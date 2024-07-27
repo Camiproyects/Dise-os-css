@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>Calculadora Simple</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        .calculator {
+            background-image: url('fond.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 400px;
+        }
+        .calculator input[type="text"] {
+            width: calc(50% - 10px);
+            height: 40px;
+            font-size: 1.2rem;
+            margin: 5px;
+            padding: 0 10px;
+            border: 1px solid #ddd;
+            text-align: right;
+        }
+        .calculator input[type="radio"] {
+            margin: 10px;
+        }
+        .calculator button {
+            height: 40px;
+            font-size: 1rem;
+            padding: 0 20px;
+            margin-top: 10px;
+            border: none;
+            background: #1f007c;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <div>
+            <label for="Num1">Primer Variable</label>
+            <input type="text" id="Num1">
+        </div>
+        <div>
+            <label for="Num2">Segunda Variable</label>
+            <input type="text" id="Num2">
+        </div>
+        <div>
+            <label><input type="radio" name="operation" value="Sum"> Suma</label>
+            <label><input type="radio" name="operation" value="Res"> Resta</label>
+            <label><input type="radio" name="operation" value="Mul"> Multiplicación</label>
+            <label><input type="radio" name="operation" value="Div"> División</label>
+            <button onclick="calcular()">Enviar</button>
+        </div>
+        <div>
+            <h3>Resultado: <span id="result">0</span></h3>
+        </div>
+    </div>
+    <script>
+        function calcular() {
+            var Num1 = parseFloat(document.getElementById('Num1').value);
+            var Num2 = parseFloat(document.getElementById('Num2').value);
+            var operation = document.querySelectorAll('input[name="operation"]:checked');
+            var selectOperation=null;
+            var i=0;
+            while (i<operation.length){
+                if (operation[i].checked) {
+                    selectOperation=operation[i].value;
+                    break;
+                }
+            }
+            if (!selectOperation){
+                Swal.fire({
+        title:"OYE!",
+        text:"Por favor, seleccione una operación.",
+        icon:"error"
+        });
+            return;
+            }
+            var result;
+            switch (selectOperation) {
+                case 'Sum':
+                    result = Num1 + Num2;
+                    break;
+                case 'Res':
+                    result = Num1 - Num2;
+                    break;
+                case 'Mul':
+                    result = Num1 * Num2;
+                    break;
+                case 'Div':
+                    if (Num2 === 0) {
+                        result = "Error: División por cero";
+                    } else {
+                        result = Num1 / Num2;
+                    }
+                    break;
+                default:
+                    result = "Error: Operación no válida";
+            }
+            
+            document.getElementById('result').textContent = result;
+        }
+    </script>
+</body>
+</html>

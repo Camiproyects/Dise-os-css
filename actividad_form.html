@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Registro de Usuarios</title>
+	<link rel="stylesheet" type="text/css" href="Estilos.css">
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script src="script.js"></script>
+</head>
+<body>
+	<header>
+		<h1>Registro de Usuarios</h1>
+	</header>
+	<section id="formulario"class="MiEstilo">
+		<form id="formulario"onsumid="return formulario()">
+			<table>
+				<tr>
+					<td><input class="caja" type="text" name="nombres" id="nombres" placeholder="Nombres" required></td>
+				</tr>
+				<tr>
+					<td><input class="caja" type="text" name="apellidos" id="apellidos" placeholder="Apellidos" required></td>
+				</tr>
+				<tr>
+					<td><input class="caja" type="email" name="correo" id="correo" placeholder="Correo Electrónico" required></td>
+				</tr>
+				<tr>
+					<td><input class="caja" type="text" name="usuario" id="usuario" placeholder="Como Te Llamamos?" required></td>
+				</tr>
+			<tr>
+			<td rowspan="3" align="right">* genero</td>
+			<td>Femenino<input type="radio"name="genero"value="Femenino"></td>
+			<td>Masculino<input type="radio"name="genero"value="Masculino"></td>
+			</tr>
+			<tr>
+			<input class="caja" type="password" name="clave" id="clave" placeholder="Contraseña" required minlength="7" maxlength="10">
+			</tr>
+			<tr>
+				<input class="caja" type="password" name="confirmarClave" id="confirmar_Clave" placeholder="Confirmar Contraseña" required minlength="7" maxlength="10">
+			</tr>
+			<tr>
+			<p>Estoy de acuerdo con <a href="">Términos y condiciones</a></p>
+			</tr>
+			<tr>
+			<td colspan="3"><button class="button"type="sibmit">Enviar Datos</button></td>
+			</tr>
+			</table>
+		</form>
+		<div id="mensaje"></div>
+	</section>
+<footer>
+	<p>&copy; 2024 , <a href="">Términos y condiciones</a></p>
+</footer>
+</body>
+</html>
