@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>Calculadora de Promedio</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        .calculator {
+            background-image: url('fond.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 400px;
+        }
+        .calculator input[type="text"] {
+            width: calc(100% - 20px);
+            height: 40px;
+            font-size: 1.2rem;
+            margin: 5px;
+            padding: 0 10px;
+            border: 1px solid #ddd;
+            text-align: right;
+        }
+        .calculator button {
+            height: 40px;
+            font-size: 1rem;
+            padding: 0 20px;
+            margin-top: 10px;
+            border: none;
+            background: #1f007c;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <div>
+            <input type="text" id="inicio" placeholder="Inserta el primer número">
+        </div>
+        <div>
+            <input type="text" id="fin" placeholder="Inserta el segundo número">
+        </div>
+        <div>
+            <button onclick="calcularPromedio()">Calcular Promedio</button>
+        </div>
+        <div>
+            <h3>Promedio: <span id="resultado">0</span></h3>
+            <h3>Números por encima del promedio: <span id="encimaPromedio">N/A</span></h3>
+            <h3>Números por debajo del promedio: <span id="debajoPromedio">N/A</span></h3>
+        </div>
+    </div>
+    <script>
+        function calcularPromedio() {
+            var inicio = parseInt(document.getElementById("inicio").value);
+            var fin = parseInt(document.getElementById("fin").value);
+            var suma = 0;
+            var cantidad = 0;
+            var numeros = [];
+
+            if (isNaN(inicio) || isNaN(fin) || inicio > fin) {
+                Swal.fire({
+                    title: "OYE!",
+                    text: "Por favor, ingrese un rango válido de números.",
+                    icon: "error"
+                });
+                return;
+            }
+
+            for (let i = inicio; i <= fin; i++) {
+                suma += i;
+                cantidad++;
+                numeros.push(i);
+            }
+
+            var promedio = suma / cantidad;
+            var encimaDelPromedio = [];
+            var debajoDelPromedio = [];
+
+            for (let i = 0; i < numeros.length; i++) {
+                if (numeros[i] > promedio) {
+                    encimaDelPromedio.push(numeros[i]);
+                } else if (numeros[i] < promedio) {
+                    debajoDelPromedio.push(numeros[i]);
+                }
+            }
+
+            document.getElementById('resultado').textContent = promedio.toFixed(2);
+            document.getElementById('encimaPromedio').textContent = encimaDelPromedio.length > 0 ? encimaDelPromedio.join(", ") : "Ninguno";
+            document.getElementById('debajoPromedio').textContent = debajoDelPromedio.length > 0 ? debajoDelPromedio.join(", ") : "Ninguno";
+        }
+    </script>
+</body>
+</html>

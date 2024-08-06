@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <title>Calculadora Simple</title>
+    <title>Calculadora</title>
     <style>
         body {
             display: flex;
@@ -24,17 +24,26 @@
             text-align: center;
             width: 400px;
         }
+        .calculator table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .calculator th, .calculator td {
+            border: 2px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
         .calculator input[type="text"] {
-            width: calc(50% - 10px);
+            width: calc(100% - 20px);
             height: 40px;
             font-size: 1.2rem;
-            margin: 5px;
             padding: 0 10px;
             border: 1px solid #ddd;
             text-align: right;
+            box-sizing: border-box;
         }
         .calculator input[type="radio"] {
-            margin: 10px;
+            margin: 5px;
         }
         .calculator button {
             height: 40px;
@@ -50,46 +59,78 @@
 </head>
 <body>
     <div class="calculator">
-        <div>
-            <label for="Num1">Primer Variable</label>
-            <input type="text" id="Num1">
-        </div>
-        <div>
-            <label for="Num2">Segunda Variable</label>
-            <input type="text" id="Num2">
-        </div>
-        <div>
-            <label><input type="radio" name="operation" value="Sum"> Suma</label>
-            <label><input type="radio" name="operation" value="Res"> Resta</label>
-            <label><input type="radio" name="operation" value="Mul"> Multiplicación</label>
-            <label><input type="radio" name="operation" value="Div"> División</label>
-            <button onclick="calcular()">Enviar</button>
-        </div>
-        <div>
-            <h3>Resultado: <span id="result">0</span></h3>
-        </div>
+        <h2>Calculadora</h2>
+        <table>
+            <tr>
+                <th>Primer Variable</th>
+                <th>Segunda Variable</th>
+            </tr>
+            <tr>
+                <td><input type="text" id="Num1" placeholder="Número 1" oninput="validarEntrada(this)"></td>
+                <td><input type="text" id="Num2" placeholder="Número 2" oninput="validarEntrada(this)"></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <label><input type="radio" name="operation" value="Sum"> Suma</label>
+                    <label><input type="radio" name="operation" value="Res"> Resta</label>
+                    <label><input type="radio" name="operation" value="Mul"> Multiplicación</label>
+                    <label><input type="radio" name="operation" value="Div"> División</label>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button onclick="calcular()">Enviar</button>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="text" id="result" readonly placeholder="Resultado">
+                </td>
+            </tr>
+        </table>
     </div>
+
     <script>
         function calcular() {
             var Num1 = parseFloat(document.getElementById('Num1').value);
             var Num2 = parseFloat(document.getElementById('Num2').value);
             var operation = document.querySelectorAll('input[name="operation"]:checked');
-            var selectOperation=null;
-            var i=0;
-            while (i<operation.length){
+            var selectOperation = null;
+
+            for (var i = 0; i < operation.length; i++) {
                 if (operation[i].checked) {
-                    selectOperation=operation[i].value;
+                    selectOperation = operation[i].value;
                     break;
                 }
             }
-            if (!selectOperation){
+
+            if (!selectOperation) {
                 Swal.fire({
-        title:"OYE!",
-        text:"Por favor, seleccione una operación.",
-        icon:"error"
-        });
-            return;
+                    title: "OYE!",
+                    text: "Por favor, seleccione una operación.",
+                    icon: "error"
+                });
+                return;
             }
+
+            if (isNaN(Num1) || isNaN(Num2)) {
+                Swal.fire({
+                    title: "Error",
+                    text: "Por favor, ingrese números válidos.",
+                    icon: "error"
+                });
+                return;
+            }
+
+            if (Num1 < 0 || Num2 < 0) {
+                Swal.fire({
+                    title: "Error",
+                    text: "Los números no pueden ser negativos.",
+                    icon: "error"
+                });
+                return;
+            }
+
             var result;
             switch (selectOperation) {
                 case 'Sum':
@@ -108,11 +149,47 @@
                         result = Num1 / Num2;
                     }
                     break;
+                case 'Avg':
+                    // Calcular promedio usando while
+                    var suma = 0;
+                    var cantidad = 0;
+                    var numeros = [];
+                    var i = Num1;
+
+                    while (i <= Num2) {
+                        suma += i;
+                        cantidad++;
+                        numeros.push(i);
+                        i++;
+                    }
+                    
+                    var promedio = Math.floor(suma / cantidad);
+                    var encimaProm = [];
+                    var bajoProm = [];
+                    
+                    i = Num1;
+                    while (i <= Num2) {
+                        if (i > promedio) {
+                            encimaProm.push(i);
+                        } else if (i < promedio) {
+                            bajoProm.push(i);
+                        }
+                        i++;
+                    }
+                    
+                    result = `Promedio: ${promedio}\n` +
+                             `Números por encima del promedio: ${encimaProm.join(", ") || "Ninguno"}\n` +
+                             `Números por debajo del promedio: ${bajoProm.join(", ") || "Ninguno"}`;
+                    break;
                 default:
                     result = "Error: Operación no válida";
             }
-            
-            document.getElementById('result').textContent = result;
+
+            document.getElementById('result').value = result;
+        }
+
+        function validarEntrada(input) {
+            input.value = input.value.replace(/[^0-9]/g, ''); // Permite solo números
         }
     </script>
 </body>
