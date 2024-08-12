@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>List</title>
+</head>
+<body>
+    <form id="paymentForm" onsubmit="Validar(event)">
+        <div id="List">
+            Métodos De Pago: 
+            <select id="MetodosPago">
+                <option value="NN">Seleccione un método</option>
+                <option value="Tarjeta De Crédito/Debito">Tarjeta De Crédito/Debito</option>
+                <option value="Paypal">Paypal</option>
+                <option value="Apple Pay">Apple Pay</option>
+                <option value="Google Pay">Google Pay</option>
+                <option value="Amazon Pay">Amazon Pay</option>
+            </select>
+            <button type="submit" class="button">Enviar</button>
+        </div>
+    </form>
+    <script>
+        function Validar(event) {
+            event.preventDefault(); // Prevenir el envío del formulario
+            var MTP = document.getElementById('MetodosPago').value;
+            if (MTP === 'NN') {
+                Swal.fire({
+                    title: "Error",
+                    text: "Por favor seleccione su método de pago",
+                    icon: "error"
+                });
+            } else {
+                Swal.fire({
+                    title: "Éxito",
+                    text: "Su método de pago es " + MTP,
+                    icon: "success"
+                });
+            }
+        }
+    </script>
+</body>
+</html>

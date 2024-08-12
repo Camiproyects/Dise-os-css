@@ -13,7 +13,7 @@
             height: 100vh;
             background-color: #f0f0f0;
             font-family: Arial, sans-serif;
-            margin: 0; /* Elimina el margen predeterminado del body */
+            margin: 0;
         }
         .calculator {
             background-image: url('fond.jpg');
@@ -24,7 +24,7 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
             width: 400px;
-            border-radius: 10px; /* Bordes redondeados */
+            border-radius: 10px;
         }
         .calculator table {
             width: 100%;
@@ -47,12 +47,12 @@
         }
         .calculator input[type="radio"],
         .calculator input[type="checkbox"] {
-            margin-right: 10px; /* Espacio entre el input y el texto */
+            margin-right: 10px; 
         }
         .calculator label {
             display: block;
             margin-bottom: 5px;
-            text-align: left; /* Alineación del texto a la izquierda dentro del label */
+            text-align: left; 
         }
         .calculator button {
             height: 40px;
@@ -63,7 +63,7 @@
             background: #1f007c;
             color: white;
             cursor: pointer;
-            border-radius: 5px; /* Bordes redondeados para el botón */
+            border-radius: 5px;
         }
         .calculator h2 {
             margin-bottom: 20px;
@@ -76,7 +76,7 @@
         <table>
             <tr>
                 <th>Identificación</th>
-                <td><input type="text" id="ID" name="ID" placeholder="Ingresa Tu Identificación"></td>
+                <td><input type="text" id="ID" name="ID" placeholder="Nombre Y Apellidos"></td>
             </tr>
             <tr>
                 <th>Nacionalidad</th>
@@ -135,7 +135,7 @@
 
             Swal.fire({
                 title: "Éxito",
-                text: "Formulario enviado correctamente",
+                text: "Bienbenido "+ID,
                 icon: "success"
             });
         }

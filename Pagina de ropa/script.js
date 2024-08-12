@@ -4,9 +4,6 @@ function Mostrarformulario(){
     document.getElementById('formulario').style.display='block';
     return false;
 }
-function VerificarCuenta(){
-    if (localStorage.getItem(''))
-}
 function formulario(){
     var Nombres=document.getElementById("nombres").value;
     var Apellidos=document.getElementById("apellidos").value;
@@ -14,7 +11,7 @@ function formulario(){
     var Correo=document.getElementById("correo").value;
     var Clave=document.getElementById("clave").value;
     var confirmar_Clave=document.getElementById("confirmar_Clave").value;
-        if (Nombres.lenght==0){
+        if (Nombres.length==0){
             Swal.fire({
             title: " UPS!",
             text: "Porfavor Ingrese Sus Nombres",
@@ -22,7 +19,7 @@ function formulario(){
         });
         return;
 }
-if (Apellidos.lenght==0){
+if (Apellidos.length==0){
     Swal.fire({
         title: " UPS!",
         text: "Porfavor Ingrese Sus Apellidos",
@@ -30,7 +27,7 @@ if (Apellidos.lenght==0){
         });
     return false;
 }
-if (Correo.lenght==0){
+if (Correo.length==0){
     Swal.fire({
         title: " UPS!",
         text: "Porfavor Ingrese Su Correo",
@@ -38,7 +35,7 @@ if (Correo.lenght==0){
         });
     return false;
 }
-if (Usuario.lenght==0){
+if (Usuario.length==0){
     Swal.fire({
         title: " UPS!",
         text: "Porfavor Ingrese Su Usuario",
@@ -46,7 +43,7 @@ if (Usuario.lenght==0){
         });
     return false;
 } 
-if (Clave.lenght==0){
+if (Clave.length==0){
     Swal.fire({
         title: " UPS!",
         text: "Porfavor Ingrese Su Clave",
@@ -54,7 +51,7 @@ if (Clave.lenght==0){
         });
     return false;
 }
-if (confirmar_Clave.lenght==0){
+if (confirmar_Clave.length==0){
     Swal.fire({
         title: " UPS!",
         text: "Porfavor Confirma Tu Clave",
@@ -63,17 +60,17 @@ if (confirmar_Clave.lenght==0){
     return false;
 }
 else
-if (Correo.lenght==0){
+if (Correo.length==0){
     Swal.fire({
         title: " UPS!",
         text: "Porfavor Ingrese Su Correo",
         icon: "error"
         });
 }
-if (Clave.lenght<7||Clave.lenght>10){
+if (Clave.length<7||Clave.length>10){
     Swal.fire({
         title:"OYE!",
-        text:Clave.lenght<7?"La Clave DEbe Tener Al Menos 7 Caracteres":"La Clave Debe tener Maximo 10 Caracteres",
+        text:Clave.length<7?"La Clave DEbe Tener Al Menos 7 Caracteres":"La Clave Debe tener Maximo 10 Caracteres",
         icon:"error"
     });
     return false
