@@ -1,7 +1,7 @@
 var TamañoAncho=window.screen.width;
 var TamañoLargo=window.screen.height;
 function Mostrarformulario(){
-    document.getElementById('formulario').style.display='block';
+    window.open('Formulario.html')
     return false;
 }
 function formulario(){

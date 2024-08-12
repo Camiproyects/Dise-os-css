@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Usuarios</title>
+    <link rel="stylesheet" type="text/css" href="Formulario.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <h1>Registro de Usuarios</h1>
+    </header>
+    <section id="formulario">
+        <form id="registro-form">
+            <div class="input-group">
+                <input class="caja" type="text" name="nombres" id="nombres" placeholder="Nombres Y Apellidos" required>
+            </div>
+            <div class="input-group">
+                <input class="caja" type="email" name="correo" id="correo" placeholder="Correo Electrónico" required>
+            </div>
+            <div class="input-group">
+                <input class="caja" type="text" name="usuario" id="usuario" placeholder="Como Te Llamamos?" required>
+            </div>
+            <div class="input-group genero">
+                <span>* Género</span>
+                <label><input type="radio" name="genero" value="Femenino"> Femenino</label>
+                <label><input type="radio" name="genero" value="Masculino"> Masculino</label>
+            </div>
+            <div class="input-group">
+                <input class="caja" type="password" name="clave" id="clave" placeholder="Contraseña" required minlength="7" maxlength="10">
+            </div>
+            <div class="input-group">
+                <input class="caja" type="password" name="confirmarClave" id="confirmar_Clave" placeholder="Confirmar Contraseña" required minlength="7" maxlength="10">
+            </div>
+            <div class="List">
+                Métodos De Pago: 
+                <select id="MetodosPago">
+                    <option value="NN">Seleccione un método</option>
+                    <option value="Tarjeta De Crédito/Debito">Tarjeta De Crédito/Debito</option>
+                    <option value="Paypal">Paypal</option>
+                    <option value="Apple Pay">Apple Pay</option>
+                    <option value="Google Pay">Google Pay</option>
+                    <option value="Amazon Pay">Amazon Pay</option>
+                </select>
+            </div>  
+            <div class="input-group">
+                <p>Estoy de acuerdo con <a href="#">Términos y condiciones</a></p>
+            </div>
+            <div class="input-group">
+                <button class="button" type="submit">Enviar Datos</button>
+            </div>
+        </form>
+        <div id="mensaje"></div>
+    </section>
+    <footer>
+        <p>&copy; 2024 , <a href="#">Términos y condiciones</a></p>
+    </footer>
+</body>
+</html>
