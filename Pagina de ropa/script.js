@@ -4,9 +4,8 @@ function Mostrarformulario(){
     window.open('Formulario.html')
     return false;
 }
-function formulario(){
+function VerificarFormulario(){
     var Nombres=document.getElementById("nombres").value;
-    var Apellidos=document.getElementById("apellidos").value;
     var Usuario=document.getElementById("usuario").value;
     var Correo=document.getElementById("correo").value;
     var Clave=document.getElementById("clave").value;
@@ -19,7 +18,7 @@ function formulario(){
         });
         return;
 }
-if (Apellidos.length==0){
+if (Nombres.length==0){
     Swal.fire({
         title: " UPS!",
         text: "Porfavor Ingrese Sus Apellidos",
