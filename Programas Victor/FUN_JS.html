@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Ejemplo de JavaScript</title>
+<meta charset="UTF-8">
+</head>
+<body>
+    <table>
+        <tr>
+            <td>
+            <input class="text" type="number" id="X" placeholder="Ingresa Tu Numero">
+            <button onclick="Traducir()">TR</button>
+            </td>
+        </tr>
+    </table>
+<script>
+function Traducir() {
+    var N=document.getElementById('X').value;
+    var NUM="0";
+    switch (parseInt(N)){
+        case 1:NUM="Uno";
+        break;
+        case 2:NUM="Dos";
+        break;
+        case 3:NUM="Tres";
+        break;
+        case 4:NUM="Cuatro";
+        break;
+        case 5:NUM="Cinco";
+        break;
+        default:NUM="Fuera De Rango"
+    }
+    alert ("Numero "+NUM);
+}
+</script>
+</body>
+</html>
